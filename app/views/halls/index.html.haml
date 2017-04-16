@@ -1,0 +1,23 @@
+%h1 Listing halls
+
+%table
+  %thead
+    %tr
+      %th Full name
+      %th Short name
+      %th
+      %th
+      %th
+
+  %tbody
+    - @halls.each do |hall|
+      %tr
+        %td= hall.full_name
+        %td= hall.short_name
+        %td= link_to 'Show', hall
+        %td= link_to 'Edit', edit_hall_path(hall)
+        %td= link_to 'Destroy', hall, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Hall', new_hall_path

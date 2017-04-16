@@ -1,0 +1,27 @@
+%p#notice= notice
+
+%p
+  %b Isbn:
+  = @book.isbn
+%p
+  %b Name:
+  = @book.name
+%p
+  %b Part:
+  = @book.part
+%p
+  %b Imprint year:
+  = @book.imprint_year
+%p
+  %b Number of shelf:
+  = @book.number_of_shelf
+%p
+  %b Stack:
+  = @book.stack
+%p
+  %b Number of copies:
+  = @book.number_of_copies
+
+= link_to 'Edit', edit_book_path(@book)
+\|
+= link_to 'Back', books_path

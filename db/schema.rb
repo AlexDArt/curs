@@ -11,10 +11,41 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170409205031) do
+ActiveRecord::Schema.define(version: 20170416152551) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "authors", force: :cascade do |t|
+    t.integer  "author_index", null: false
+    t.string   "first_name",   null: false
+    t.string   "second_name"
+    t.string   "last_name",    null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  create_table "authors_books", id: false, force: :cascade do |t|
+    t.integer "author_id", null: false
+    t.integer "book_id",   null: false
+  end
+
+  add_index "authors_books", ["author_id", "book_id"], name: "index_authors_books_on_author_id_and_book_id", using: :btree
+
+  create_table "books", force: :cascade do |t|
+    t.integer  "isbn",             null: false
+    t.string   "name",             null: false
+    t.integer  "part"
+    t.integer  "imprint_year",     null: false
+    t.integer  "number_of_shelf",  null: false
+    t.integer  "stack_id",         null: false
+    t.integer  "number_of_copies", null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
+
+  add_index "books", ["imprint_year", "part", "isbn"], name: "index_books_on_imprint_year_and_part_and_isbn", unique: true, using: :btree
+  add_index "books", ["stack_id"], name: "index_books_on_stack_id", using: :btree
 
   create_table "delayed_jobs", force: :cascade do |t|
     t.integer  "priority",   default: 0, null: false
@@ -31,6 +62,15 @@ ActiveRecord::Schema.define(version: 20170409205031) do
   end
 
   add_index "delayed_jobs", ["priority", "run_at"], name: "delayed_jobs_priority", using: :btree
+
+  create_table "halls", force: :cascade do |t|
+    t.string   "full_name",  null: false
+    t.string   "short_name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "halls", ["short_name", "full_name"], name: "index_halls_on_short_name_and_full_name", unique: true, using: :btree
 
   create_table "role_users", force: :cascade do |t|
     t.integer  "role_id",    null: false
@@ -53,6 +93,15 @@ ActiveRecord::Schema.define(version: 20170409205031) do
 
   add_index "roles", ["info"], name: "index_roles_on_info", unique: true, using: :btree
   add_index "roles", ["name"], name: "index_roles_on_name", unique: true, using: :btree
+
+  create_table "stacks", force: :cascade do |t|
+    t.integer  "index",      null: false
+    t.integer  "hall_id",    null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "stacks", ["hall_id"], name: "index_stacks_on_hall_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                                       null: false
@@ -95,6 +144,8 @@ ActiveRecord::Schema.define(version: 20170409205031) do
 
   add_index "versions", ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id", using: :btree
 
+  add_foreign_key "books", "stacks"
   add_foreign_key "role_users", "roles"
   add_foreign_key "role_users", "users"
+  add_foreign_key "stacks", "halls"
 end

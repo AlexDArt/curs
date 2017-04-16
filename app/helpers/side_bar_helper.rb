@@ -34,7 +34,27 @@ module SideBarHelper
        :controller => :welcome, :action => :index,
        :icon => 'search',
        :class => 'long'}
-    ]} 
+    ]}
+    result << {
+      :name => 'Библиотека',
+      :icon => 'bookmark',
+      :children => [
+      {:name => 'Библиотечные залы',
+       :controller => :halls, :action => :index,
+       :icon => 'asterisk'},
+      {:name => 'Стелажи',
+       :controller => :stacks, :action => :index,
+       :icon => 'inbox',
+       :class => 'long'},
+      {:name => 'Книги',
+       :controller => :books, :action => :index,
+       :icon => 'book',
+       :class => 'long'},
+      {:name => 'Авторы',
+       :controller => :authors, :action => :index,
+       :icon => 'pencil',
+       :class => 'long'}
+    ]}  
     result
   end
   

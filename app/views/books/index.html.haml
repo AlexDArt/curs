@@ -1,0 +1,33 @@
+%h1 Listing books
+
+%table
+  %thead
+    %tr
+      %th Isbn
+      %th Name
+      %th Part
+      %th Imprint year
+      %th Number of shelf
+      %th Stack
+      %th Number of copies
+      %th
+      %th
+      %th
+
+  %tbody
+    - @books.each do |book|
+      %tr
+        %td= book.isbn
+        %td= book.name
+        %td= book.part
+        %td= book.imprint_year
+        %td= book.number_of_shelf
+        %td= book.stack
+        %td= book.number_of_copies
+        %td= link_to 'Show', book
+        %td= link_to 'Edit', edit_book_path(book)
+        %td= link_to 'Destroy', book, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Book', new_book_path

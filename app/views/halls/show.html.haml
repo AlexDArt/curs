@@ -1,0 +1,12 @@
+%p#notice= notice
+
+%p
+  %b Full name:
+  = @hall.full_name
+%p
+  %b Short name:
+  = @hall.short_name
+
+= link_to 'Edit', edit_hall_path(@hall)
+\|
+= link_to 'Back', halls_path
