@@ -1,12 +1,17 @@
-%p#notice= notice
+=breadcrumb_tag do
+  %li.active
+    = @stack.index
+  %li
+    = link_to 'Стелажи', stacks_path
+  %li
+    Библиотека
 
-%p
-  %b Index:
-  = @stack.index
-%p
-  %b Hall:
-  = @stack.hall
+%h1= @stack.index
 
-= link_to 'Edit', edit_stack_path(@stack)
-\|
-= link_to 'Back', stacks_path
+%dl
+  %dt= Stack.human_attribute_name(:index)
+  %dd= @stack.index
+  %dt= Stack.human_attribute_name(:hall_id)
+  %dd= @stack.hall_id
+
+

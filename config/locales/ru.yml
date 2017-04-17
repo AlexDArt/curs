@@ -14,6 +14,26 @@ ru:
       new-button: Новая роль
       edit: Редактирование роли
       new: Создание роли
+    authors:
+      index: Список авторов
+      new-button: Новый автор 
+      edit: Редактирование автор
+      new: Создание автора
+    books:
+      index: Список книг
+      new-button: Новая книга 
+      edit: Редактирование книги
+      new: Создание книги
+    halls:
+      index: Список залов
+      new-button: Новый зал 
+      edit: Редактирование зала
+      new: Создание зала
+    stacks:
+      index: Список стелажей
+      new-button: Новый стелаж 
+      edit: Редактирование стелажа
+      new: Создание стелажа
   helpers:
     submit:
       create: Сохранить
@@ -31,6 +51,10 @@ ru:
   activerecord:
     models:
       user: Пользователь
+      author: Автор
+      book: Книга
+      hall: Зал
+      stack: Стелаж
     attributes:
       user:
         email: Пользовательское имя/электронная почта
@@ -45,6 +69,25 @@ ru:
         name: Обозначение
         info: Краткое название
         full_info: Описание
+      author:
+        author_index: Авторский указатель
+        first_name: Имя
+        second_name: Отчество
+        last_name: Фамилия
+      book:
+        isbn: ISBN
+        name: Название
+        part: Часть
+        imprint_year: Год издания
+        number_of_shelf: Номер полки
+        number_of_copies: Количество копий
+        stack_id: Стелаж
+      stack:
+        index: Индекс
+        hall_id: Зал
+      hall:
+        full_name: Полное название
+        short_name: Краткое название
     errors:
       models:
         person:

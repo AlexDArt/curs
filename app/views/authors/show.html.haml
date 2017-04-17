@@ -1,18 +1,21 @@
-%p#notice= notice
+=breadcrumb_tag do
+  %li.active
+    = @author.author_index
+  %li
+    = link_to 'Авторы', authors_path
+  %li
+    Библиотека
 
-%p
-  %b Author index:
-  = @author.author_index
-%p
-  %b First name:
-  = @author.first_name
-%p
-  %b Second name:
-  = @author.second_name
-%p
-  %b Last name:
-  = @author.last_name
+%h1= @author.author_index
 
-= link_to 'Edit', edit_author_path(@author)
-\|
-= link_to 'Back', authors_path
+%dl
+  %dt= Author.human_attribute_name(:author_index)
+  %dd= @author.author_index
+  %dt= Author.human_attribute_name(:first_name)
+  %dd= @author.first_name
+  %dt= Author.human_attribute_name(:second_name)
+  %dd= @author.second_name
+  %dt= Author.human_attribute_name(:last_name)
+  %dd= @author.last_name
+
+

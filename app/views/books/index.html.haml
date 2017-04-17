@@ -1,18 +1,27 @@
-%h1 Listing books
+=breadcrumb_tag do
+  %li.active
+    Книги
+  %li
+    Библиотека
 
-%table
+%h1= t('app.books.index')
+
+%table.table.table-hover.table-striped.center
+  %caption
+    .pull-right
+      = link_to t('app.books.new-button'), new_book_path, class: 'btn btn-primary'
   %thead
     %tr
-      %th Isbn
-      %th Name
-      %th Part
-      %th Imprint year
-      %th Number of shelf
-      %th Stack
-      %th Number of copies
-      %th
-      %th
-      %th
+      %th= Book.human_attribute_name(:isbn)
+      %th= Book.human_attribute_name(:name)
+      %th= Book.human_attribute_name(:part)
+      %th= Book.human_attribute_name(:imprint_year)
+      %th= Book.human_attribute_name(:number_of_shelf)
+      %th= Book.human_attribute_name(:stack_id)
+      %th= Book.human_attribute_name(:number_of_copies)
+      %th.p50
+      %th.p50
+      %th.p50
 
   %tbody
     - @books.each do |book|
@@ -22,12 +31,14 @@
         %td= book.part
         %td= book.imprint_year
         %td= book.number_of_shelf
-        %td= book.stack
+        %td= book.stack_id
         %td= book.number_of_copies
-        %td= link_to 'Show', book
-        %td= link_to 'Edit', edit_book_path(book)
-        %td= link_to 'Destroy', book, :method => :delete, :data => { :confirm => 'Are you sure?' }
-
-%br
-
-= link_to 'New Book', new_book_path
+        %td
+          = link_to book, class: 'btn btn-success' do
+            = fa_icon :eye
+        %td
+          = link_to edit_book_path(book), class: 'btn btn-info' do
+            = fa_icon :edit
+        %td
+          = link_to book, :method => :delete, :data => { :confirm => t('helpers.sure') }, class: 'btn btn-danger' do
+            = fa_icon :times

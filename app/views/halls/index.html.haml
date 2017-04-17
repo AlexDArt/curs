@@ -1,23 +1,34 @@
-%h1 Listing halls
+=breadcrumb_tag do
+  %li.active
+    Библиотечные залы
+  %li
+    Библиотека
 
-%table
+%h1= t('app.halls.index')
+
+%table.table.table-hover.table-striped.center
+  %caption
+    .pull-right
+      = link_to t('app.halls.new-button'), new_hall_path, class: 'btn btn-primary'
   %thead
     %tr
-      %th Full name
-      %th Short name
-      %th
-      %th
-      %th
+      %th= Hall.human_attribute_name(:full_name)
+      %th= Hall.human_attribute_name(:short_name)
+      %th.p50
+      %th.p50
+      %th.p50
 
   %tbody
     - @halls.each do |hall|
       %tr
         %td= hall.full_name
         %td= hall.short_name
-        %td= link_to 'Show', hall
-        %td= link_to 'Edit', edit_hall_path(hall)
-        %td= link_to 'Destroy', hall, :method => :delete, :data => { :confirm => 'Are you sure?' }
-
-%br
-
-= link_to 'New Hall', new_hall_path
+        %td
+          = link_to hall, class: 'btn btn-success' do
+            = fa_icon :eye
+        %td
+          = link_to edit_hall_path(hall), class: 'btn btn-info' do
+            = fa_icon :edit
+        %td
+          = link_to hall, :method => :delete, :data => { :confirm => t('helpers.sure') }, class: 'btn btn-danger' do
+            = fa_icon :times

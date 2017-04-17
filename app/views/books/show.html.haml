@@ -1,27 +1,27 @@
-%p#notice= notice
+=breadcrumb_tag do
+  %li.active
+    = @book.isbn
+  %li
+    = link_to 'Книги', books_path
+  %li
+    Библиотека
 
-%p
-  %b Isbn:
-  = @book.isbn
-%p
-  %b Name:
-  = @book.name
-%p
-  %b Part:
-  = @book.part
-%p
-  %b Imprint year:
-  = @book.imprint_year
-%p
-  %b Number of shelf:
-  = @book.number_of_shelf
-%p
-  %b Stack:
-  = @book.stack
-%p
-  %b Number of copies:
-  = @book.number_of_copies
+%h1= @book.isbn
 
-= link_to 'Edit', edit_book_path(@book)
-\|
-= link_to 'Back', books_path
+%dl
+  %dt= Book.human_attribute_name(:isbn)
+  %dd= @book.isbn
+  %dt= Book.human_attribute_name(:name)
+  %dd= @book.name
+  %dt= Book.human_attribute_name(:part)
+  %dd= @book.part
+  %dt= Book.human_attribute_name(:imprint_year)
+  %dd= @book.imprint_year
+  %dt= Book.human_attribute_name(:number_of_shelf)
+  %dd= @book.number_of_shelf
+  %dt= Book.human_attribute_name(:stack_id)
+  %dd= @book.stack_id
+  %dt= Book.human_attribute_name(:number_of_copies)
+  %dd= @book.number_of_copies
+
+
