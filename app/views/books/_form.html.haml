@@ -27,5 +27,32 @@
   .field
     = f.label :number_of_copies
     = f.number_field :number_of_copies
+  
+
+  %h2 Авторы
+  - i = 1 
+  = f.fields_for :authors do |df|
+    %h2 Автор № #{i}
+    .field
+      = df.hidden_field :id
+    .field
+      = df.label :second_name 
+      = df.text_area :second_name
+    .field
+      = df.label :first_name
+      = df.text_area :first_name
+    .field
+      = df.label :last_name
+      = df.text_area :last_name
+    .field
+      = df.label :author_index
+      = df.text_area :author_index
+    - if @book.authors.size >  i 
+      .field
+        = df.label 'Отвязать'
+        = df.check_box :_destroy
+    - i += 1
+
   .actions
     = f.submit 'Save'
+

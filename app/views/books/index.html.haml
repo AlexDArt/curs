@@ -19,6 +19,7 @@
       %th= Book.human_attribute_name(:number_of_shelf)
       %th= Book.human_attribute_name(:stack_id)
       %th= Book.human_attribute_name(:number_of_copies)
+      %th= Author.human_attribute_name(:author_index)
       %th.p50
       %th.p50
       %th.p50
@@ -33,6 +34,7 @@
         %td= book.number_of_shelf
         %td= book.stack_id
         %td= book.number_of_copies
+        %td= book.authors.map{ |ru| ru.author_index}.join(', ')
         %td
           = link_to book, class: 'btn btn-success' do
             = fa_icon :eye
