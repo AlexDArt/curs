@@ -5,6 +5,7 @@ class BooksController < ApplicationController
   # GET /books.json
   def index
     @books = Book.all
+    @authors = Author.all
   end
 
   # GET /books/1
@@ -15,21 +16,22 @@ class BooksController < ApplicationController
   # GET /books/new
   def new
     @book = Book.new
-    @book.authors.build
+    @author = Author.all
   end
 
   # GET /books/1/edit
   def edit
-    @book.authors.build
+    @author = Author.all
   end
 
   # POST /books
   # POST /books.json
   def create
     @book = Book.new(book_params)
-
+    @author = Author.find(params[:author_id])
     respond_to do |format|
       if @book.save
+        @author.books << @book
         format.html { redirect_to @book, notice: 'Book was successfully created.' }
         format.json { render :show, status: :created, location: @book }
       else
@@ -42,8 +44,10 @@ class BooksController < ApplicationController
   # PATCH/PUT /books/1
   # PATCH/PUT /books/1.json
   def update
+    @author = Author.find(params[:author_id])
     respond_to do |format|
       if @book.update(book_params)
+        @author.books << @book
         format.html { redirect_to @book, notice: 'Book was successfully updated.' }
         format.json { render :show, status: :ok, location: @book }
       else
@@ -68,10 +72,10 @@ class BooksController < ApplicationController
     def set_book
       @book = Book.find(params[:id])
     end
+ 
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def book_params
-      params.require(:book).permit(:isbn, :name, :part, :imprint_year, :number_of_shelf, :stack_id, :number_of_copies,
-      authors_attributes: [:id, :second_name, :first_name, :last_name, :author_index, :_destroy])
+      params.require(:book).permit(:isbn, :name, :part, :imprint_year, :number_of_shelf, :stack_id, :number_of_copies)
     end
 end

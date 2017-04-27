@@ -9,9 +9,4 @@ class Book < ActiveRecord::Base
   validates :number_of_copies, presence: true
   validates :part, uniqueness: {scope: [:imprint_year, :isbn]}
 
-
-  accepts_nested_attributes_for :authors,
-    reject_if: proc{ |r| r['first_name'].blank?},
-    allow_destroy: true
-
 end
