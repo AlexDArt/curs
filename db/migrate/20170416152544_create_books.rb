@@ -1,6 +1,7 @@
 class CreateBooks < ActiveRecord::Migration
   def change
     create_table :books do |t|
+      t.integer :author_id, index: true
       t.integer :isbn, null: false, unique: true
       t.string :name, null: false
       t.integer :part

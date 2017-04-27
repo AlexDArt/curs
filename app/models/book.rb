@@ -1,6 +1,7 @@
 class Book < ActiveRecord::Base
   belongs_to :stack
-  has_and_belongs_to_many :authors
+  has_many :author_books
+  has_many :authors, through: :author_books
   validates :name, presence: true
   validates :isbn, presence: true, uniqueness: true
   validates :imprint_year, presence: true
@@ -10,8 +11,5 @@ class Book < ActiveRecord::Base
   validates :part, uniqueness: {scope: [:imprint_year, :isbn]}
 
 
-  accepts_nested_attributes_for :authors,
-    reject_if: proc{ |r| r['first_name'].blank?},
-    allow_destroy: true
 
 end
