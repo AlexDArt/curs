@@ -8,5 +8,4 @@ class Book < ActiveRecord::Base
   validates :number_of_shelf, presence: true
   validates :number_of_copies, presence: true
   validates :part, uniqueness: {scope: [:imprint_year, :isbn]}
-
 end
