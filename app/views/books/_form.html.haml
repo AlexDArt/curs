@@ -29,7 +29,7 @@
     = f.number_field :number_of_copies
   
   .field
-    = f.label :author, "Авторы"
+    = f.label :authors, "Авторы"
     = f.select :authors, Author.all.collect{|t| [t.author_index, t.id]}, {:prompt => "Выберите авторов"}, {:multiple => true} 
 
   .actions

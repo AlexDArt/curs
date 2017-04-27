@@ -28,10 +28,12 @@ class BooksController < ApplicationController
   # POST /books.json
   def create
     @book = Book.new(book_params)
-    @author = Author.find(params[:author_id])
+    @authors = []
+    params[:book][:authors].each{|a| @authors << Author.find(a) if a.present?}
     respond_to do |format|
       if @book.save
-        @author.books << @book
+        @authors.each{|a| a.books << @book}
+        # @author.books << @book
         format.html { redirect_to @book, notice: 'Book was successfully created.' }
         format.json { render :show, status: :created, location: @book }
       else
@@ -44,10 +46,11 @@ class BooksController < ApplicationController
   # PATCH/PUT /books/1
   # PATCH/PUT /books/1.json
   def update
-    @author = Author.find(params[:author_id])
+    @authors = []
+    params[:book][:authors].each{|a| @authors << Author.find(a) if a.present?}
     respond_to do |format|
       if @book.update(book_params)
-        @author.books << @book
+        @authors.each{|a| a.books << @book}
         format.html { redirect_to @book, notice: 'Book was successfully updated.' }
         format.json { render :show, status: :ok, location: @book }
       else
@@ -72,7 +75,7 @@ class BooksController < ApplicationController
     def set_book
       @book = Book.find(params[:id])
     end
- 
+
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def book_params

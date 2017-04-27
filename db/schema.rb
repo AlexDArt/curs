@@ -30,7 +30,7 @@ ActiveRecord::Schema.define(version: 20170416152551) do
     t.integer "book_id",   null: false
   end
 
-  add_index "authors_books", ["author_id", "book_id"], name: "index_authors_books_on_author_id_and_book_id", using: :btree
+  add_index "authors_books", ["author_id", "book_id"], name: "index_authors_books_on_author_id_and_book_id", unique: true, using: :btree
 
   create_table "books", force: :cascade do |t|
     t.integer  "isbn",             null: false
