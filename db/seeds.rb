@@ -12,6 +12,7 @@ r1, r2 = Role.create_main_roles
 ru1 = RoleUser.create(role: r1, user: u1)
 ru2 = RoleUser.create(role: r2, user: u2)
 
+Author.delete_all; Book.delete_all; Stack.delete_all; Hall.delete_all
 Hall.create(full_name: "Зал №1", short_name: "1H")
 Hall.create(full_name: "Зал №2", short_name: "2H")
 Stack.create(index: 0111, hall_id: 1)
