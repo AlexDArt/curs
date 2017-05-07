@@ -124,6 +124,7 @@ ActiveRecord::Schema.define(version: 20170416152551) do
     t.datetime "last_logout_at"
     t.datetime "last_activity_at"
     t.string   "last_login_from_ip_address"
+    t.date     "birthday"
   end
 
   add_index "users", ["activation_token"], name: "index_users_on_activation_token", using: :btree
