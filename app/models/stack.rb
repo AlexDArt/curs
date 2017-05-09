@@ -4,4 +4,8 @@ class Stack < ActiveRecord::Base
   
   validates :index, presence: true
   validates :hall, presence: true
+
+  accepts_nested_attributes_for :hall,
+    reject_if: proc{ |r| r['full_name'].blank?},
+    allow_destroy: true
 end

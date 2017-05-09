@@ -5,12 +5,23 @@
       %ul
         - @stack.errors.full_messages.each do |msg|
           %li= msg
-
+  
   .field
     = f.label :index
     = f.number_field :index
+  %h2= "Выберите зал"
   .field
-    = f.label :hall_id
-    = f.text_field :hall_id
+    = f.label :hall_id, "Зал"
+    = f.select :hall_id, Hall.all.collect{|t| [t.full_name, t.id]}, prompt: "" 
+  %h2= "Или создайте новый"
+  = f.fields_for (:hall) do |df| 
+    .field
+      = df.hidden_field :id
+    .field
+      = df.label :full_name, "Полное название"
+      = df.text_area :full_name
+    .field
+      = df.label :short_name, "Краткое название"
+      = df.text_area :short_name
   .actions
     = f.submit 'Save'

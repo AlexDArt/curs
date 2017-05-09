@@ -17,7 +17,7 @@ ru:
     authors:
       index: Список авторов
       new-button: Новый автор 
-      edit: Редактирование автор
+      edit: Редактирование автора
       new: Создание автора
     books:
       index: Список книг
@@ -30,25 +30,35 @@ ru:
       edit: Редактирование зала
       new: Создание зала
     stacks:
-      index: Список стелажей
-      new-button: Новый стелаж 
-      edit: Редактирование стелажа
-      new: Создание стелажа
+      index: Список стеллажей
+      new-button: Новый стеллаж 
+      edit: Редактирование стеллажа
+      new: Создание стеллажа
   helpers:
     submit:
       create: Сохранить
       submit: Сохранить
       update: Сохранить
+    sure: Действительно удалить? 
   buttons:
     edit: Редактировать
     destroy: Удалить
     show: Показать
+    save: Сохранить
     confirm:
       user: Действительно удалить пользователя?
       role: Действительно удалить роль?
+      author: Действительно удалить автора?
+      book: Действительно удалить книгу?
+      stack: Действительно удалить стеллаж?
+      hall: Действительно удалить зал?
     new: 
       user: Новый пользователь
       role: Новая роль
+      author: Новый автор 
+      book: Новая книга 
+      stack: Новый стеллаж
+      hall: Новый зал
   headers:
     users:
       edit: Редактирование пользователя
@@ -58,6 +68,22 @@ ru:
       index: Список возможных ролей пользователей
       edit: Редактирование роли
       new: Новая роль
+    authors:
+      index: Список авторов
+      new: Новый автор 
+      edit: Редактирование автора
+    books:
+      index: Список книг
+      new: Новая книга 
+      edit: Редактирование книги
+    halls:
+      index: Список залов
+      new: Новый зал 
+      edit: Редактирование зала
+    stacks:
+      index: Список стеллажей
+      new: Новый стеллаж 
+      edit: Редактирование стеллажа
   views:
     pagination:
       first: ⇤
@@ -71,7 +97,7 @@ ru:
       author: Автор
       book: Книга
       hall: Зал
-      stack: Стелаж
+      stack: Стеллаж
     attributes:
       user:
         email: Пользовательское имя/электронная почта
@@ -87,16 +113,16 @@ ru:
         name: Обозначение
         info: Краткое название
         full_info: Описание
-      # nested_start                                                                                                                                                                                      
-      role_user: &role_users                                                                                                                                                                              
-      # nested_finish                                                                                                                                                                                     
-        role: Роль                                                                                                                                                                                        
-        role_id: Роль                                                                                                                                                                                     
-        data: Параметры                                                                                                                                                                                   
-      # nested_start                                                                                                                                                                                      
-      user/role_users:                                                                                                                                                                                    
-        <<: *role_users                                                                                                                                                                                   
-      # nested_finish      
+      # nested_start
+      role_user: &role_users
+      # nested_finish
+        role: Роль
+        role_id: Роль
+        data: Параметры
+      # nested_start
+      user/role_users:
+        <<: *role_users
+      # nested_finish    
       author:
         author_index: Авторский указатель
         first_name: Имя

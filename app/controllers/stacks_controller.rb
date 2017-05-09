@@ -15,10 +15,12 @@ class StacksController < ApplicationController
   # GET /stacks/new
   def new
     @stack = Stack.new
+    @stack.build_hall
   end
 
   # GET /stacks/1/edit
   def edit
+    @stack.build_hall
   end
 
   # POST /stacks
@@ -69,6 +71,7 @@ class StacksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def stack_params
-      params.require(:stack).permit(:index, :hall_id)
+      params.require(:stack).permit(:index, :hall_id,
+      hall_attributes: [:id, :full_name, :short_name, :_destroy])
     end
 end
