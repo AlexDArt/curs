@@ -5,18 +5,27 @@
       %ul
         - @author.errors.full_messages.each do |msg|
           %li= msg
+  .row
+    .col-md-6
+      .form-group
+        = f.label :author_index
+        = f.number_field :author_index, class: 'form-control'
+    .col-md-6
+      .form-group
+        = f.label :last_name
+        = f.text_field :last_name, class: 'form-control'
+  .row
+    .col-md-6
+      .form-group
+        = f.label :first_name
+        = f.text_field :first_name, class: 'form-control'
 
-  .field
-    = f.label :author_index
-    = f.number_field :author_index
-  .field
-    = f.label :first_name
-    = f.text_field :first_name
-  .field
-    = f.label :second_name
-    = f.text_field :second_name
-  .field
-    = f.label :last_name
-    = f.text_field :last_name
-  .actions
-    = f.submit 'Save'
+    .col-md-6
+      .form-group
+        = f.label :second_name
+        = f.text_field :second_name, class: 'form-control'
+  - if is_admin?
+    .form-actions.bottom20
+      = f.submit nil, class: 'btn btn-primary'
+  - else
+    %h3 Вносить изменения(регистрировать новые) может только администратор

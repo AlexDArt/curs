@@ -40,7 +40,7 @@
   %h2 Выберите зарегистрированных авторов
   %h3 (для выбора нескольких зажмите ctrl)
   .field
-    = f.label :authors, "Авторы"
+    = f.label :authors, "Авторские указатели"
     = f.select :authors, Author.all.collect{|t| [t.author_index, t.id]}, {:prompt => ""}, {:multiple => true, class: 'form-control'} 
   %h2 Введите данные для незарегистрированных авторов
   - i = 0
@@ -52,5 +52,8 @@
   .row.bottom20
     .col-md-12
       = link_to_add_author(f, f.object)
-  .form-actions.bottom20
-    = f.submit nil, class: 'btn btn-primary'
+  - if is_admin?
+    .form-actions.bottom20
+      = f.submit nil, class: 'btn btn-primary'
+  - else
+    %h3 Вносить изменения(регистрировать новые) может только администратор

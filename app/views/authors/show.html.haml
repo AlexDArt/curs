@@ -18,7 +18,6 @@
   %dt= Author.human_attribute_name(:last_name)
   %dd= @author.last_name
   %h2 Книги
-  %dt= Book.human_attribute_name(:name)
   %dd= @author.books.map{ |ru| ru.name }.join(', ')
 
 

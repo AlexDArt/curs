@@ -1,5 +1,13 @@
-%h1 Новый автор
+=breadcrumb_tag do
+  %li.active
+    = t('headers.authors.new')
+  %li
+    = link_to 'Авторы', authors_path
+  %li
+    Библиотека
+
+.page-header
+  %h1= t('headers.authors.new')
 
 = render 'form'
 
-= link_to 'Back', authors_path
