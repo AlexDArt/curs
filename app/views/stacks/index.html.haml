@@ -22,7 +22,7 @@
     - @stacks.each do |stack|
       %tr
         %td= stack.index
-        %td= stack.hall_id
+        %td= stack.hall.full_name
         %td
           = link_to stack, class: 'btn btn-success' do
             = fa_icon :eye

@@ -5,23 +5,30 @@
       %ul
         - @stack.errors.full_messages.each do |msg|
           %li= msg
-  
-  .field
-    = f.label :index
-    = f.number_field :index
+  .row
+    .col-md-6
+      .form-group
+        = f.label :index
+        = f.number_field :index, class: 'form-control'
   %h2= "Выберите зал"
-  .field
-    = f.label :hall_id, "Зал"
-    = f.select :hall_id, Hall.all.collect{|t| [t.full_name, t.id]}, prompt: "" 
+  .row
+    .col-md-6
+      .form-group
+        = f.label :hall_id, "Зал"
+        = f.select :hall_id, Hall.all.collect{|t| [t.full_name, t.id]}, {:prompt => ""}, class: 'form-control'
   %h2= "Или создайте новый"
   = f.fields_for (:hall) do |df| 
     .field
       = df.hidden_field :id
-    .field
-      = df.label :full_name, "Полное название"
-      = df.text_area :full_name
-    .field
-      = df.label :short_name, "Краткое название"
-      = df.text_area :short_name
-  .actions
-    = f.submit 'Save'
+    .row
+      .col-md-6
+        .form-group
+          = df.label :full_name, "Полное название"
+          = df.text_field :full_name, class: 'form-control'
+      .col-md-6
+        .form-group
+          = df.label :short_name, "Краткое название"
+          = df.text_field :short_name, class: 'form-control'
+
+  .form-actions.bottom20
+    = f.submit nil, class: 'btn btn-primary'
