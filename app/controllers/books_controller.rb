@@ -34,7 +34,7 @@ class BooksController < ApplicationController
     params[:book][:authors].each{|a| @authors << Author.find(a) if a.present?}
     respond_to do |format|
       if @book.save
-        @authors.each{|a| a.books << @book}
+        @authors.each{|a| a.books << @book if !(@book.authors.include?(@author))}
         format.html { redirect_to @book, notice: 'Book was successfully created.' }
         format.json { render :show, status: :created, location: @book }
       else
@@ -51,7 +51,7 @@ class BooksController < ApplicationController
     params[:book][:authors].each{|a| @authors << Author.find(a) if a.present?}
     respond_to do |format|
       if @book.update(book_params)
-        @authors.each{|a| a.books << @book}
+        @authors.each{|a| a.books << @book if !(@book.authors.include?(@author))}
         format.html { redirect_to @book, notice: 'Book was successfully updated.' }
         format.json { render :show, status: :ok, location: @book }
       else

@@ -41,17 +41,19 @@
   %h3 (для выбора нескольких зажмите ctrl)
   .field
     = f.label :authors, "Авторские указатели"
-    = f.select :authors, Author.all.collect{|t| [t.author_index, t.id]}, {:prompt => ""}, {:multiple => true, class: 'form-control'} 
+    = f.select :authors, Author.all.collect{|t| [t.author_index, t.id]}, {:prompt => ""}, {:multiple => true, class: 'form-control'}
   %h2 Введите данные для незарегистрированных авторов
   - i = 0
-  = f.fields_for :authors do |df|
-    .field
-      = df.hidden_field :id
-      = render('books/author_book_form', df: df, i: i + 1)
-      -i = i+1
   .row.bottom20
     .col-md-12
       = link_to_add_author(f, f.object)
+  .row
+    = f.fields_for :authors do |df|
+      .field
+        = df.hidden_field :id
+        = render('books/author_book_form', df: df, i: i + 1)
+        -i = i+1
+  %br 
   - if is_admin?
     .form-actions.bottom20
       = f.submit nil, class: 'btn btn-primary'
