@@ -2,27 +2,30 @@ module SideBarHelper
   def side_bar_items(ru)
     result = []
     result << {
-      :name => 'Сслыка без детей',
+      :name => 'Начальная страница',
       :icon => 'list',
       :controller => :welcome, 
       :action => :index
     }
-    result << {
-      :name => 'Администрирование',
-      :icon => 'users',
-      :children => [
-      {:name => 'Пользователи',
-       :controller => :users, :action => :index,
-       :icon => 'users',
-       :class => 'long'},
-      {:name => 'Добавление',
-       :controller => :users, :action => :new,
-       :icon => 'user-plus'},
-      {:name => 'Роли',
-       :controller => :roles, :action => :index,
-       :icon => 'align-center',
-       :class => 'long'},
-    ]}
+    if is_admin?
+      result << {
+        :name => 'Администрирование',
+        :icon => 'users',
+        :children => [
+        {:name => 'Пользователи',
+         :controller => :users, :action => :index,
+         :icon => 'users',
+         :class => 'long'},
+        {:name => 'Добавление',
+         :controller => :users, :action => :new,
+         :icon => 'user-plus'},
+        {:name => 'Роли',
+         :controller => :roles, :action => :index,
+         :icon => 'align-center',
+         :class => 'long'},
+      ]}
+      result
+    end
     result << {
       :name => 'Библиотека',
       :icon => 'bookmark',

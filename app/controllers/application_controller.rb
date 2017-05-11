@@ -5,6 +5,8 @@ class ApplicationController < ActionController::Base
   before_action :require_login
   before_action :check_app_auth
 
+  include ApplicationHelper
+
   private
   ## Выбор текущей роли и проверка прав доступа для неё у данного пользователя
   def check_app_auth()

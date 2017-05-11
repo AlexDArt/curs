@@ -1,6 +1,8 @@
 class RoleUsersController < ApplicationController
   before_action :set_role_user, only: [:show, :edit, :update, :destroy]
-
+  
+  before_action -> {redirect_if_not_one_of_role_in ["admin"]}
+  
   # GET /role_users
   # GET /role_users.json
   def index

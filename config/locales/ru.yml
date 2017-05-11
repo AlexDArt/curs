@@ -136,7 +136,7 @@ ru:
         imprint_year: Год издания
         number_of_shelf: Номер полки
         number_of_copies: Количество копий
-        stack_id: Стелаж
+        stack_id: Стеллаж
       stack:
         index: Индекс
         hall_id: Зал
