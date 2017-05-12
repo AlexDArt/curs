@@ -1,0 +1,31 @@
+.col-md-6
+  %div{class: 'panel panel-'+ (i.kind_of?(Integer) ? 'success' : 'info')}
+    .panel-heading
+      Автор #
+      = i
+      %span.toright
+        = link_to_remove_author(df)
+      .clearfix
+    .panel-body
+      .row
+        .col-md-6
+          .form-group
+            = df.label :author_index
+            = df.text_field :author_index, class: 'form-control'
+            = df.error_messages_for(:author_index)
+        .col-md-6
+          .form-group
+            = df.label :last_name
+            = df.text_field :last_name, class: 'form-control'
+            = df.error_messages_for(:last_name)
+      .row
+        .col-md-6
+          .form-group
+            = df.label :first_name
+            = df.text_field :first_name, class: 'form-control'
+            = df.error_messages_for(:first_name)
+        .col-md-6
+          .form-group
+            = df.label :second_name 
+            = df.text_field :second_name, class: 'form-control'
+            = df.error_messages_for(:second_name)
