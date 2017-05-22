@@ -1,0 +1,56 @@
+%div{ id: "stack#{stack.id}", class: 'entry-row'}
+  %div.row-header
+    %div.row-header-left
+      = stack.stack_index
+    %div.row-header-right
+      %div
+        = link_to stack, class: 'btn btn-success' do
+          = fa_icon :eye
+      %div
+        = link_to edit_stack_path(stack), class: 'btn btn-info' do
+          = fa_icon :edit
+      %div
+        = link_to stack,
+        :method => :delete,
+        :data => { :confirm => t('buttons.confirm.stack') },
+        class: 'btn btn-danger' do
+          = fa_icon :times
+  %div.row-body
+    %div.entry-description
+      %span=t('headers.stacks.row.description')
+      %ul
+        %li
+          = "#{t('activerecord.attributes.stack.stack_index')}: #{stack.stack_index}"
+
+    %div.entry-assotiations
+      %span=t('headers.stacks.row.hall')
+      %ul
+        %li= stack.hall.short_name
+    %div.entry-locations
+      %span=t('headers.stacks.row.books')
+      - if (stack.books.ids.empty?)
+        %ul
+          %li
+            = "не указано"
+      - else
+        %ul
+          - stack.books.uniq.each do |book|
+            %li
+              = book.name
+
+    %div.buttons
+      %div
+        = link_to stack, class: 'btn btn-success' do
+          = fa_icon :eye
+          = t('buttons.show')
+      %div
+        = link_to edit_stack_path(stack), class: 'btn btn-info' do
+          = fa_icon :edit
+          = t('buttons.edit')
+      %div
+        = link_to stack,
+        :method => :delete,
+        :data => { :confirm => t('buttons.confirm.stack') },
+        class: 'btn btn-danger' do
+          = fa_icon :times
+          = t('buttons.destroy')

@@ -37,8 +37,8 @@ ActiveRecord::Schema.define(version: 20170501085108) do
     t.string   "name",             null: false
     t.integer  "part"
     t.integer  "imprint_year",     null: false
-    t.integer  "number_of_shelf",  null: false
-    t.integer  "stack_id",         null: false
+    t.integer  "number_of_shelf"
+    t.integer  "stack_id"
     t.integer  "number_of_copies", null: false
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false

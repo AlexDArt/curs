@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  post 'fill_hall_form' => 'stacks#fill_hall_form'
   resources :books
   resources :authors
   resources :stacks

@@ -10,26 +10,24 @@
       .form-group
         = f.label :index
         = f.number_field :index, class: 'form-control'
-  %h2= "Выберите зал"
+  %h2= "Выберите зал или создайте новый"
   .row
     .col-md-6
-      .form-group
-        = f.label :hall_id, "Зал"
-        = f.select :hall_id, Hall.all.collect{|t| [t.full_name, t.id]}, {:prompt => ""}, class: 'form-control'
-  %h2= "Или создайте новый"
-  = f.fields_for (:hall) do |df| 
-    .field
-      = df.hidden_field :id
-    .row
-      .col-md-6
-        .form-group
-          = df.label :full_name, "Полное название"
-          = df.text_field :full_name, class: 'form-control'
-      .col-md-6
-        .form-group
-          = df.label :short_name, "Краткое название"
-          = df.text_field :short_name, class: 'form-control'
+      = f.label :hall_id
+      = f.collection_select :hall_id, Hall.all, :id, :full_name,
+      {include_blank: true}, {id: 'select_existing_hall', class: 'form-control'}
+      = f.fields_for :hall, f.object.hall || f.object.build_hall do |hall|
+        = render 'hall_fields', f: hall          
   
+  - if params[:action] == 'edit'
+    - if !f.object.new_record?
+      = link_to @stack.hall,
+      :method => :delete,
+      :data => { :confirm => t('buttons.confirm.hall') },
+      class: 'btn btn-danger' do
+        = fa_icon :times
+        = t('buttons.destroy')
+  %p
   - if is_admin?
     .form-actions.bottom20
       = f.submit nil, class: 'btn btn-primary'

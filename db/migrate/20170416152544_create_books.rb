@@ -5,8 +5,8 @@ class CreateBooks < ActiveRecord::Migration
       t.string :name, null: false
       t.integer :part
       t.integer :imprint_year, null: false
-      t.integer :number_of_shelf, null: false
-      t.references :stack, index: true, foreign_key: true, null: false
+      t.integer :number_of_shelf
+      t.references :stack, index: true, foreign_key: true
       t.integer :number_of_copies, null: false
       t.index [:imprint_year, :part, :isbn], unique: true
       t.timestamps null: false
