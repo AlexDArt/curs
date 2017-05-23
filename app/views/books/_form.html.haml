@@ -40,8 +40,7 @@
   %h2 Выберите зарегистрированных авторов
   %h3 (для выбора нескольких зажмите ctrl)
   .field
-    = f.label :authors, "Авторские указатели"
-    = f.select :authors, Author.all.collect{|t| [t.author_index, t.id]}, {:prompt => ""}, {:multiple => true, class: 'form-control'}
+    = f.select :authors, Author.all.collect{|t| [t.author_index.to_s + " " + t.last_name + " " + t.first_name + " " + t.second_name, t.id]}, {:prompt => ""}, {:multiple => true, class: 'form-control'}
   %h2 Введите данные для незарегистрированных авторов
   - i = 0
   .row.bottom20
