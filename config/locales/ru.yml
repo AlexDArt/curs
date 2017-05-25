@@ -60,6 +60,8 @@ ru:
       book: Новая книга 
       stack: Новый стеллаж
       hall: Новый зал
+    search:
+      book: Найти книги 
   headers:
     users:
       edit: Редактирование пользователя
@@ -77,6 +79,7 @@ ru:
       index: Список книг
       new: Новая книга 
       edit: Редактирование книги
+      search: Поиск книг
     halls:
       index: Список залов
       new: Новый зал 
@@ -85,6 +88,9 @@ ru:
       index: Список стеллажей
       new: Новый стеллаж 
       edit: Редактирование стеллажа
+  forms:
+    book_search:
+      found: Найденые книги
   views:
     pagination:
       first: ⇤

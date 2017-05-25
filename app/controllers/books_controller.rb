@@ -26,6 +26,16 @@ class BooksController < ApplicationController
     @author = Author.all
   end
 
+  def search
+    if params.has_key?('search')
+      @books = Book.search(params['search'])
+    else
+      @books = []
+    end
+    params['search'] ||= {}
+
+  end
+
   # POST /books
   # POST /books.json
   def create

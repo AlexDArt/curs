@@ -12,4 +12,46 @@ class Book < ActiveRecord::Base
   accepts_nested_attributes_for :authors,
      reject_if: proc{ |r| r['first_name'].blank?},
      allow_destroy: true
+
+  def self.search(params)
+     result = Book.includes(:authors).includes(:stack => :hall).references(:authors).references(:stack => :hall)
+     if params['name'].present?
+       result = result.where(name: params['name'])
+     end
+     if params['isbn'].present?
+       result = result.where(date_of_manufacture: params['isbn'])
+     end
+     if params['imprint_year'].present?
+       result = result.where(date_of_completion: params['imprint_year'])
+     end
+     if params['number_of_copies'].present?
+       result = result.where(amount: params['number_of_copies'])
+     end
+
+     if params['stack'].present?
+       result = result.where(stack: params['stack'])
+     end
+
+     if params['full_name'].present?
+       result = result.where(halls: {full_name: params['full_name']})
+     end
+     if params['short_name'].present?
+       result = result.where(halls: {short_name: params['short_name']})
+     end
+
+     if params['author_index'].present?
+       result = result.where(authors: {author_index: params['author_index']})
+     end
+     if params['first_name'].present?
+       result = result.where(authors: {first_name: params['first_name']})
+     end
+     if params['second_name'].present?
+       result = result.where(authors: {second_name: params['second_name']})
+     end
+     if params['last_name'].present?
+       result = result.where(authors: {last_name: params['last_name']})
+     end
+
+     result.all
+  end
 end

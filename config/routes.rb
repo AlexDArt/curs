@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
   post 'fill_hall_form' => 'stacks#fill_hall_form'
-  resources :books
+  resources :books do
+    collection do
+      get :search
+    end
+  end
   resources :authors
   resources :stacks
   resources :halls

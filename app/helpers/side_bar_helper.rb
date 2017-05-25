@@ -40,6 +40,14 @@ module SideBarHelper
        :class => 'long'}
     ]}  
     result
+    result << {
+      :name => 'Поиск книг',
+      :icon => 'search',
+      :controller => :books,
+      :action => :search,
+      :class => 'long'
+      }
+    result
   end
   
   def is_open?(ctr, act)

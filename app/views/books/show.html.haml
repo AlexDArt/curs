@@ -23,10 +23,7 @@
   %dd= @book.stack_id
   %dt= Book.human_attribute_name(:number_of_copies)
   %dd= @book.number_of_copies
-  %h2 Авторы
+  %dt Авторы:
   -au= @book.authors
   -au.each do |r|
-    %dt= r.author_index
-    %dd= r.last_name + " " + r.first_name + " " + r.second_name
-    %br
-    
+    %dd= r.author_index.to_s + " " + r.last_name + " " + r.first_name + " " + r.second_name
