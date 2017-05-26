@@ -61,7 +61,7 @@ ru:
       stack: Новый стеллаж
       hall: Новый зал
     search:
-      book: Найти книги 
+      book: Найти книги
   headers:
     users:
       edit: Редактирование пользователя
@@ -90,7 +90,10 @@ ru:
       edit: Редактирование стеллажа
   forms:
     book_search:
-      found: Найденые книги
+      found: Найдено книг
+      book: По параметрам книги
+      location: По расположению
+      author: По параметрам автора
   views:
     pagination:
       first: ⇤

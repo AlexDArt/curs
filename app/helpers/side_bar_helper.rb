@@ -37,16 +37,13 @@ module SideBarHelper
       {:name => 'Книги',
        :controller => :books, :action => :index,
        :icon => 'book',
+       :class => 'long'},
+      {:name => 'Поиск книг',
+       :icon => 'search',
+       :controller => :books,
+       :action => :search,
        :class => 'long'}
     ]}  
-    result
-    result << {
-      :name => 'Поиск книг',
-      :icon => 'search',
-      :controller => :books,
-      :action => :search,
-      :class => 'long'
-      }
     result
   end
   
