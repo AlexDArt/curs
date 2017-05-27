@@ -61,7 +61,7 @@ ru:
       stack: Новый стеллаж
       hall: Новый зал
     search:
-      book: Найти книги 
+      book: Найти книги
   headers:
     users:
       edit: Редактирование пользователя
@@ -90,7 +90,10 @@ ru:
       edit: Редактирование стеллажа
   forms:
     book_search:
-      found: Найденые книги
+      found: Найдено книг
+      book: По параметрам книги
+      location: По расположению
+      author: По параметрам автора
   views:
     pagination:
       first: ⇤
@@ -143,6 +146,14 @@ ru:
         number_of_shelf: Номер полки
         number_of_copies: Количество копий
         stack_id: Стеллаж
+        stack: Стеллаж
+        author: Автор
+      book/authors: 
+        author_index: Авторский указатель
+        first_name: Имя
+        second_name: Отчество
+        last_name: Фамилия
+
       stack:
         index: Индекс
         hall_id: Зал
@@ -155,3 +166,4 @@ ru:
           attributes:
             snils:
               check_sum: имеет неправильную контрольную сумму
+        

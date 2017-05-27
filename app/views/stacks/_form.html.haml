@@ -1,10 +1,5 @@
 = form_for @stack do |f|
-  - if @stack.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@stack.errors.count, "error")} prohibited this stack from being saved:"
-      %ul
-        - @stack.errors.full_messages.each do |msg|
-          %li= msg
+  = error_messages_for @stack
   .row
     .col-md-6
       .form-group
@@ -16,6 +11,7 @@
       = f.label :hall_id
       = f.collection_select :hall_id, Hall.all, :id, :full_name,
       {include_blank: true}, {id: 'select_existing_hall', class: 'form-control'}
+      = f.error_messages_for(:hall_id)
       = f.fields_for :hall, f.object.hall || f.object.build_hall do |hall|
         = render 'hall_fields', f: hall          
   

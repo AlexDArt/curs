@@ -4,13 +4,14 @@
   %li
     =link_to 'Книги', books_path
   %li
-    Информация о книгах
+    Библиотека
 
 .page-header
   %h1= t('headers.books.search')
 
 = form_tag search_books_path(), method: :get do
   .well
+    %h3= t('forms.book_search.book')
     .row
       .col-md-4
         .form-group
@@ -28,12 +29,12 @@
         .form-group
         =Book.human_attribute_name(:number_of_copies)
         =number_field_tag 'search[number_of_copies]', params['search']['number_of_copies'],class: 'form-control'
-      
+    %h3= t('forms.book_search.location')
+    .row      
       .col-md-4
         .form-group
         =Book.human_attribute_name(:stack_id)
-        = select_tag 'search[stack]', options_for_select(Stack.all.collect{|t| [t.index, t.id]}),
-          {include_blank: true, class: 'form-control'}
+        =number_field_tag 'search[stack_id]', params['search']['stack_id'],class: 'form-control'
       .col-md-4
         .form-group
         =Hall.human_attribute_name(:full_name)
@@ -42,6 +43,7 @@
         .form-group
         =Hall.human_attribute_name(:short_name)
         =text_field_tag 'search[short_name]', params['search']['short_name'],class: 'form-control'
+    %h3= t('forms.book_search.author')
     .row
       .col-md-4
         .form-group

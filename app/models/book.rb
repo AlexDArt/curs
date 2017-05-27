@@ -10,7 +10,7 @@ class Book < ActiveRecord::Base
   validates :part, uniqueness: {scope: [:imprint_year, :isbn]}
 
   accepts_nested_attributes_for :authors,
-     reject_if: proc{ |r| r['first_name'].blank?},
+     reject_if: proc{ |r| r['first_name'].blank? & r['last_name'].blank? & r['author_index'].blank?},
      allow_destroy: true
 
   def self.search(params)
@@ -19,13 +19,13 @@ class Book < ActiveRecord::Base
        result = result.where(name: params['name'])
      end
      if params['isbn'].present?
-       result = result.where(date_of_manufacture: params['isbn'])
+       result = result.where(isbn: params['isbn'])
      end
      if params['imprint_year'].present?
-       result = result.where(date_of_completion: params['imprint_year'])
+       result = result.where(imprint_year: params['imprint_year'])
      end
      if params['number_of_copies'].present?
-       result = result.where(amount: params['number_of_copies'])
+       result = result.where(number_of_copies: params['number_of_copies'])
      end
 
      if params['stack'].present?

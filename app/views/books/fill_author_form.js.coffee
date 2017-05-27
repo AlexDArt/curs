@@ -1,0 +1,10 @@
+if ('<%= @author.nil? %>' == 'true')
+  $('#author_book_attributes_author_index').val('')
+  $('#author_book_attributes_first_name').val('')
+  $('#author_book_attributes_second_name').val('')
+  $('#author_book_attributes_last_name').val('')
+else
+  $('#author_book_attributes_author_index').val('<%= @author.try(:author_index) %>')
+  $('#author_book_attributes_first_name').val('<%= @author.try(:first_name) %>')
+  $('#author_book_attributes_second_name').val('<%= @author.try(:second_name) %>')
+  $('#author_book_attributes_last_name').val('<%= @author.try(:last_name) %>')

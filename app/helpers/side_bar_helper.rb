@@ -37,22 +37,19 @@ module SideBarHelper
       {:name => 'Книги',
        :controller => :books, :action => :index,
        :icon => 'book',
+       :class => 'long'},
+      {:name => 'Поиск книг',
+       :icon => 'search',
+       :controller => :books,
+       :action => :search,
        :class => 'long'}
     ]}  
-    result
-    result << {
-      :name => 'Поиск книг',
-      :icon => 'search',
-      :controller => :books,
-      :action => :search,
-      :class => 'long'
-      }
     result
   end
   
   def is_open?(ctr, act)
     case ctr.to_s
-    when 'users', 'roles'
+    when 'users', 'roles', 'books', 'stacks'
       ctr.to_s == controller_name.to_s  
     else
       false
